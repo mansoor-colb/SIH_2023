@@ -58,17 +58,61 @@ async function Docgpt(text) {
 
 }
 }
-app.post('/docdetail', async(req, res) => {
-    let ans=await Docgpt(req.doc);
-    if(ans!="error"){
 
-        res.send({"data":1,"res":ans});
-    }
-    else{
-    res.send({"data":0});
-    }
+// async function doc(txt){
+  
+
+   
+// }
+
+app.post('/docdetail', async(req, res) => {
+    // let ans=await doc();
+    console.log(req.body.d)
+    var options = {
+        method: 'GET',
+        url: `https://14f3-35-247-182-198.ngrok.io/inputs/${req.body.d}`
+      };
+      
+      axios.request(options).then(function (response) {
+      
+          res.send({"data":1,"res":response.data});
+       
+      }).catch(function (error) {
+        console.error(error);
+        res.send({"data":0});
+      });
+
+
 
 })
+
+app.post('/detailinsert', async(req, res) => {
+   
+  const{...spd}=req.body;
+
+const formData =  Object.entries(req.body);
+
+  // Log the key-value pairs
+  formData.forEach(([key, value]) => {
+    console.log(`Field: ${key}, Value: ${value}`);
+  })
+console.log(spd)
+// var options = {
+//   method: 'GET',
+//   url: `https://d617-35-247-182-198.ngrok.io/generate/Bail Application {"name":Mansoor,"age":32}`
+// };
+
+// axios.request(options).then(function (response) {
+//   console.log(response.data);
+// }).catch(function (error) {
+//   console.error(error);
+// });
+    console.log(typeof req.body)
+
+})
+
+
+
 app.post('/doctype', async(req, res) => {
 
     

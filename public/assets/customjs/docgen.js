@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    alert(5)
+    // alert(5)
     let query = window.location.search;
     let url = new URLSearchParams(query);
     let val = url.get("type");
@@ -8,7 +8,7 @@ $(document).ready(function(){
         url:"http://localhost:1223/docdetail",
             type:"post",
             dataType:"json",
-            data:{doc:val},       
+            data:{d:val},       
             beforeSend:function(){
                 $("#detailsform").html(`Generating....`)
 
@@ -16,17 +16,22 @@ $(document).ready(function(){
            success: function (res) {
             if(res.data==1){
                 $("#detailsform").html(``)
+             
+                let r=res.res.replace(/[\[\]]/g, '');
                 
-                for(let i of JSON.parse(res.res.text)){
-                    $("#detailsform").append(`  <div class="col-lg-6">
+               let rr=r.split(",")
+                
+                for(let i of rr){
+                    $("#detailsform").append(` <div class="col-lg-6">
                     <div class="floating-label form-group">
-                       <input class="floating-input form-control" type="text" placeholder="${i}">
-                       <label>${i}</label>
+                    <label>${i.replace(/'/g, '')}</label>
+                       <input class="floating-input form-control" type="text" name ="${i.replace(/'/g, '')}" placeholder="${i.replace(/'/g, '')}">
+                       
                     </div>
                  </div>`)
                 console.log(i)
                 }
-                // console.log(res.res)
+           
 
             }
             else{
@@ -36,6 +41,52 @@ $(document).ready(function(){
             
         }
     });
+
+
+
+
+    $('#details').submit(function (e) {
+     alert(2)
+         e.preventDefault(); // Prevent the default form submission
+ 
+         const formData = new FormData(this);
+       
+        //  if (
+        //      formData.get('val-album').trim() === '' ||
+        //      formData.get('val-genere').trim() === '' ||
+        //     !(imageFile)
+        //  ) {
+        //      swal("Invalid ",'Please fill in all fields',"error");
+        //      return;
+        //  }
+ 
+         $.ajax({
+             type: 'POST',
+             url: `http://localhost:1223/detailinsert`, // The URL to your server-side route
+             data: formData,
+             processData: false,
+             contentType: false,
+             success: function (res) {
+                 // Handle the success response from the server
+                 if(res.status==200){
+                  
+                 }
+                 else if(res.status==500){
+                   
+ 
+                 }
+                 console.log(res);
+              
+                 // You can update the UI here if needed
+             },
+             error: function (error) {
+                 swal("Error","Try Later","error")
+ 
+                 // Handle any errors that occur during the AJAX request
+                 console.error(error);
+             }
+         });
+     });
 
 
 })
