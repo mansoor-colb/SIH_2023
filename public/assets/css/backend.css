@@ -16879,3 +16879,29 @@ ul.iq-contact-rest li a p {
 
 .icon.i-list {
   display: block; }
+
+  .badge-container {
+    position: absolute;
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+    z-index: 1; /* Ensure badges appear above the card content */
+}
+
+/* Style for the "Pro" badge */
+.badge-pro {
+    background-color: #ff9800; /* Orange background color for Pro */
+    color: #ffffff; /* White text color */
+    padding: 4px 8px; /* Add padding for better visual appearance */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 12px; /* Adjust the font size as needed */
+}
+
+/* Style for the "Free" badge */
+.badge-free {
+    background-color: #2ecc71; /* Green background color for Free */
+    color: #ffffff; /* White text color */
+    padding: 4px 8px; /* Add padding for better visual appearance */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 12px; /* Adjust the font size as needed */
+}
+
