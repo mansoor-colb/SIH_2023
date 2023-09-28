@@ -28,7 +28,7 @@ $(document).ready(function(){
                         <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-block card-stretch card-height">
                             <div class="card-body image-thumb">
-                                <a href="docgeneration.html?type=${i.name}">
+                                <a href="docg?type=${i.name}">
                                     <div id="quick" doc-id=${i.type_id}  class="mb-4 text-center p-3 rounded iq-thumb">
                                         <div class="iq-image-overlay"></div>
                                         <img src="../assets/images/layouts/page-1/pdf.png" class="img-fluid" alt="image1">       
@@ -68,7 +68,7 @@ $(document).ready(function(){
                 if(res.data==1){
                     for(let i of res.res){
                         $("#docpress").append(`
-                        <li><a href="docgeneration.html?type=${i.name}"><div class="item" id="did" did=${i.type_id}><i class="far fa-file-pdf bg-info"></i>${i.name}</div></a></li>`)
+                        <li><a href="docg?type=${i.name}"><div class="item" id="did" did=${i.type_id}><i class="far fa-file-pdf bg-info"></i>${i.name}</div></a></li>`)
                     }
                    
 

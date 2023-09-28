@@ -130,6 +130,73 @@ app.post('/doctype', async(req, res) => {
 
 })
 
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/index.html');
+});
+
+app.get('/index', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/index.html');
+});
+
+app.get('/page-alexa', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/page-alexa.html');
+});
+app.get('/page-android', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/page-android.html');
+});
+
+app.get('/page-brightspot', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/page-brightspot.html');
+});
+
+app.get('/page-delete', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/page-delete.html');
+});
+
+app.get('/page-favourite', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/page-favourite.html');
+});
+
+app.get('/page-files', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/page-files.html');
+});
+
+app.get('/page-folders', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/page-folders.html');
+});
+
+app.get('/page-ionic', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/page-ionic.html');
+});
+
+app.get('/page-viewfile', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/page-viewfile.html');
+});
+
+app.get('/pages-blank-page', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/pages-blank-page.html');
+});
+
+app.get('/pages-comingsoon', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/pages-comingsoon.html');
+});
+
+app.get('/pages-error-500', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/pages-error-500.html');
+});
+
+app.get('/pages-error', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/pages-error.html');
+});
+
+app.get('/pages-maintenance', (req, res) => {
+  res.sendFile(__dirname + '/public/backend/pages-maintenance.html');
+});
+
+app.get('/docg', (req, res) => {
+  res.sendFile(__dirname + `/public/backend/docgeneration.html`);
+});
+
 app.listen(port, () => {
     console.log('Server started on post ' + port)
 })
