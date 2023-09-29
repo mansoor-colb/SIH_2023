@@ -41,7 +41,7 @@ $(document).ready(function () {
 
                     for (let i of res.res) {
                         $("#quickdoc").append(`
-                        <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="col-lg-3 col-md-6 col-sm-12" >
                         <div class="template">
                             <a id="SXFVD" data-tippy-content="Select as favorite"></a>
                             <div class="card border-0" id="SXFVD-card" style="transition: transform 0.3s ease-in-out;"onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1.0)';">
@@ -51,7 +51,7 @@ $(document).ready(function () {
                                             <div class="badge-container">
                                                 <span class="badge badge-free">Free</span>
                                                 <span class="badge badge-pro">Pro</span> <!-- Add the "Pro" badge here -->
-                                            </div>
+                                            </div> 
                                         </div>
                                         <div class="template-title">
                                             <h6 class="text">${i.name}</h6>
