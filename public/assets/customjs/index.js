@@ -57,13 +57,14 @@ $(document).ready(function () {
                                             <h6 class="text">${i.name}</h6>
                                         </div>
                                         <div class="template-info">
-                                            <p class="fs-13 text-muted mb-2">Generate a newsletter based on the provided
-                                                information</p>
+                                            <p class="fs-13 text-muted mb-2">Generate a ${i.name} based on the provided
+                                                 information.</p>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                         </div>
+                        
                     </div>
                         `);
                     }
