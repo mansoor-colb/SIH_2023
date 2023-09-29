@@ -3,7 +3,7 @@ $(document).ready(function(){
     let query = window.location.search;
     let url = new URLSearchParams(query);
     let val = url.get("type");
-    alert(val);
+    // alert(val);
     $.ajax({
         url:"http://localhost:1223/docdetail",
             type:"post",
@@ -12,12 +12,7 @@ $(document).ready(function(){
             beforeSend:function(){
                 $("#detailsform").css({"justify-content": "center"})
                 $("#detailsform").html(`
-                <div class="content">
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-            </div>`)
+                <span class="loader"></span>`)
 
             $("#generate").html("Generating.....")
             $('#generate').prop('disabled', true);
@@ -49,7 +44,7 @@ $(document).ready(function(){
 
             }
             else{
-                alert("eror")
+                alert("error")
 
             }
             
@@ -60,7 +55,7 @@ $(document).ready(function(){
 
     const form =   $('#details');
   form.submit(function (e) {
-     alert(2)
+ 
          e.preventDefault(); // Prevent the default form submission
  
         //  const formData = new FormData(this);
@@ -73,6 +68,7 @@ $(document).ready(function(){
         //      swal("Invalid ",'Please fill in all fields',"error");
         //      return;
         //  }
+
         const formData = form.serializeArray();
         const formValues = {};
   
@@ -85,34 +81,41 @@ $(document).ready(function(){
               console.log(`Key: ${key}, Value: ${formValues[key]}`);
             }
           }
-        // console.log(formValues)
+        
          $.ajax({
              type: 'POST',
              url: `http://localhost:1223/detailinsert`, // The URL to your server-side route
              data:{type:val,dat:JSON.stringify(formValues)},
              beforeSend:function(){
+                $(".modal-title").html(val+" - Content can be modified.")
                 $("#doccontent").css({"display":"flex","justify-content": "center"})
                 $("#doccontent").html(`
-                <div class="content">
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-            </div>
+                <span class="loader"></span>
                 
                 `)
+                $("#close").prop('disabled', true);
+                $("#download").prop('disabled', true);
 
              },
           dataType:"json",
              success: function (res) {
-                $("#view").slideUp();
+                // $("#view").slideUp();
+                
                  // Handle the success response from the server
                  if(res.data==1){
-                    $("#view").slideDown();
-                   
-                    $("#doccontent").css({"justify-content": "unset"})
-                    $("#doccontent").html('')
-                    $("#doccontent").html(`<pre contenteditable="true">${res.res.result}</pre>`)
+                     localStorage.setItem("docres",`${res.res.result}`)
+                     localStorage.setItem("doctitle",`${val}`)
+                     setTimeout(function(){
+
+                         window.location.href="docresult"
+                     },2000)
+                //     $("#close").prop('disabled', false);
+                // $("#download").prop('disabled', false);
+                //     $("#view").slideDown();
+                //    $(".modal-title").html(val+" - Content can be modified.")
+                //     $("#doccontent").css({"justify-content": "unset"})
+                //     $("#doccontent").html('')
+                //     $("#doccontent").html(`<pre contenteditable="true">${res.res.result}</pre>`)
                   
                  }
                  else if(res.status==500){
@@ -133,5 +136,17 @@ $(document).ready(function(){
          });
      });
 
+     $("#download").click(function(){
+        const doc = new jsPDF();
+      
+      // HTML content to convert
+      const htmlContent =  $("#doccontent").html()
+      
+      // Add HTML content to PDF
+      doc.fromHTML(htmlContent, 10, 10);
+      
+      // Save the PDF with a specified name (e.g., my_pdf.pdf)
+      doc.save(`${val}.pdf`);
+     })
 
 })

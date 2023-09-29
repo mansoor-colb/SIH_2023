@@ -70,7 +70,7 @@ app.post('/docdetail', async(req, res) => {
     console.log(req.body.d)
     var options = {
         method: 'GET',
-        url: `https://36a7-34-125-179-89.ngrok.io/inputs/${req.body.d}`
+        url: `https://39a4-35-240-205-82.ngrok.io/inputs/${req.body.d}`
       };
       
       axios.request(options).then(function (response) {
@@ -102,7 +102,7 @@ const requestData = {
 };
 
 // Make a POST request using Axios
-axios.post('https://36a7-34-125-179-89.ngrok.io/generate/', requestData)
+axios.post('https://39a4-35-240-205-82.ngrok.io/generate/', requestData)
   .then((response) => {
     console.log('Request successful', response.data);
     res.send({"data":1,"res":response.data});
@@ -205,7 +205,9 @@ app.get('/pages-maintenance', (req, res) => {
 app.get('/docg', (req, res) => {
   res.sendFile(__dirname + `/public/backend/docgeneration.html`);
 });
-
+app.get('/docresult', (req, res) => {
+  res.sendFile(__dirname + `/public/backend/docresult.html`);
+});
 // app.listen(port, () => {
 //     console.log('Server started on post ' + port)
 // })

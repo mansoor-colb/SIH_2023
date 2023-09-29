@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="../assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
     <style>
         
         /* .loader {
@@ -128,7 +128,7 @@
 </head>
 
 <body class="  ">
-    <div class="modal fade bd-example-modal-xl" tabindex="-1" style="display: none;" aria-hidden="true">
+    <!-- <div class="modal fade bd-example-modal-xl" tabindex="-1" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-xl">
            <div class="modal-content">
               <div class="modal-header">
@@ -141,12 +141,12 @@
                  <p>Modal body text goes here.</p>
               </div>
               <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Preparing Doc..</button>
-                 <!-- <button type="button" class="btn btn-primary" id="download">Save and Download</button> -->
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
+                 <button type="button" class="btn btn-primary" id="download">Save and Download</button>
               </div>
            </div>
         </div>
-     </div>
+     </div> -->
     <!-- loader Start -->
     <!-- <div id="loading">
           <div id="loading-center">
@@ -286,21 +286,11 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="header-title">
-                                    <h4 class="card-title">Provide The Following Details </h4>
+                                    <h4 class="card-title"> </h4>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form id="details">
-                                    <div class="row" id="detailsform">
-
-
-
-                                    </div>
-                                    <!-- <input type="text" name="" value="" id="hidden" hidden> -->
-                                    <button type="submit" id="generate" class="btn btn-primary mt-2" data-toggle="modal" data-target=".bd-example-modal-xl">Generate</button>
-                                    <p id="view" class="btn btn-primary" style="margin-top: 23px;" data-toggle="modal" data-target=".bd-example-modal-xl">View</p>
-
-                                </form>
+                               
 
 
 
@@ -381,12 +371,23 @@
             </div>
         </div>
     </div>
-    <script src="../assets/customjs/docgen.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+    <!-- <script src="../assets/customjs/docres.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
+  
    
 <script>
-         const easyMDE = new EasyMDE({element: document.getElementById('doccontent')});
+    $(document).ready(function(){
+        // const easyMDE = new EasyMDE({element: document.getElementsByClassName('card-body')});
+        function load(){
+            let title=localStorage.getItem("doctitle");
+            let content=localStorage.getItem("docres");
+            console.log(content)
+            $(".card-title").html(title);
+            $(".card-body").html(`<pre contenteditable="true">${content}</pre>`);
+        }
+        load();
+    })
+     
 </script>
     
 </body>

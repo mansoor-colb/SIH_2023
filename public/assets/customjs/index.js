@@ -50,7 +50,7 @@ $(document).ready(function () {
                                         <div class="template-icon mb-4">
                                             <div class="badge-container">
                                                 <span class="badge badge-free">Free</span>
-                                                <span class="badge badge-pro">Pro</span> <!-- Add the "Pro" badge here -->
+                                                 <!-- Add the "Pro" badge here -->
                                             </div> 
                                         </div>
                                         <div class="template-title">
